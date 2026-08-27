@@ -1,0 +1,6 @@
+{
+  "name": "AR Tours & Travel",
+  "description": "Premium Tours, Reliable Car Rentals with ₹99 Slot Booking, and Trusted Hajj & Umrah Pilgrimage Packages.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
