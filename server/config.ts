@@ -5,6 +5,18 @@ export const config = {
   port: 3000,
   isProduction: process.env.NODE_ENV === 'production',
   jwtSecret: process.env.JWT_SECRET || 'ar-tours-travel-super-secure-jwt-key-2026',
+  jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
+  mysql: {
+    host: process.env.DB_HOST || process.env.MYSQL_HOST || '',
+    port: parseInt(process.env.DB_PORT || process.env.MYSQL_PORT || '3306', 10),
+    user: process.env.DB_USER || process.env.MYSQL_USER || '',
+    password: process.env.DB_PASSWORD || process.env.MYSQL_PASSWORD || '',
+    database: process.env.DB_NAME || process.env.MYSQL_DATABASE || '',
+  },
+  admin: {
+    email: process.env.ADMIN_EMAIL || 'adminayaan@gmail.com',
+    password: process.env.ADMIN_PASSWORD || 'ayaan@mosin8121434741',
+  },
   supabase: {
     url: process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',
     anonKey: process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || '',

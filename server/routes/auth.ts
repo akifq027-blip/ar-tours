@@ -123,7 +123,7 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
     const token = jwt.sign(
       { userId: newUser.id, email: newUser.email, role: newUser.role },
       config.jwtSecret,
-      { expiresIn: '7d' }
+      { expiresIn: (config.jwtExpiresIn as any) || '7d' }
     );
 
     const { password_hash: _, ...safeUser } = newUser;
@@ -161,48 +161,11 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // Check if the user requires Two-Step Verification (Admin accounts)
-    const isAdmin = user.role === 'admin';
-    if (isAdmin) {
-      // Generate a secure 6-digit numeric OTP
-      const otp = Math.floor(100000 + Math.random() * 900000).toString();
-      const sessionId = `2fa_${crypto.randomBytes(16).toString('hex')}`;
-      const configuredPhone = user.phone || db.settings.company_info?.phone || '+91 81214 34741';
-      const maskedPhone = maskPhoneNumber(configuredPhone);
-
-      twoFactorSessions.set(sessionId, {
-        sessionId,
-        userId: user.id,
-        otp,
-        phone: configuredPhone,
-        maskedPhone,
-        expiresAt: Date.now() + 5 * 60 * 1000, // 5 minutes valid
-        attempts: 0,
-        createdAt: Date.now(),
-      });
-
-      console.log(`\n=============================================================`);
-      console.log(`🔒 [2-STEP OTP VERIFICATION] SECURE CODE DISPATCHED`);
-      console.log(`📱 Destination: Registered Admin Device (${maskedPhone})`);
-      console.log(`🔢 Original 6-Digit OTP Code: [ ${otp} ]`);
-      console.log(`⏱️ Valid for: 5 minutes | Session ID: ${sessionId}`);
-      console.log(`=============================================================\n`);
-
-      res.json({
-        message: `Two-step verification required. A 6-digit security verification code has been dispatched to your registered phone number ${maskedPhone}.`,
-        requires_2fa: true,
-        two_factor_session_id: sessionId,
-        masked_phone: maskedPhone,
-        expires_in_seconds: 300,
-      });
-      return;
-    }
-
-    // Standard Customer Login
+    // Direct Authentication for both Customers and Administrators (No OTP / No 2FA)
     const token = jwt.sign(
       { userId: user.id, email: user.email, role: user.role },
       config.jwtSecret,
-      { expiresIn: '7d' }
+      { expiresIn: (config.jwtExpiresIn as any) || '7d' }
     );
 
     const { password_hash: _, ...safeUser } = user;
@@ -268,7 +231,7 @@ router.post('/verify-2fa', async (req: Request, res: Response): Promise<void> =>
     const token = jwt.sign(
       { userId: user.id, email: user.email, role: user.role },
       config.jwtSecret,
-      { expiresIn: '7d' }
+      { expiresIn: (config.jwtExpiresIn as any) || '7d' }
     );
 
     const { password_hash: _, ...safeUser } = user;

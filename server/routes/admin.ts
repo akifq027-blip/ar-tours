@@ -1,5 +1,5 @@
 import { Router, Response } from 'express';
-import { db, DbCar, DbTour, DbPilgrimagePackage } from '../db.js';
+import { db, DbCar, DbTour, DbPilgrimagePackage, DbReview } from '../db.js';
 import { authenticateToken, requireAdmin, AuthRequest } from '../middleware/auth.js';
 
 const router = Router();
@@ -406,6 +406,17 @@ router.put('/bookings/:id/status', (req: AuthRequest, res: Response): void => {
   res.json({ message: 'Booking status updated.', booking });
 });
 
+router.delete('/bookings/:id', (req: AuthRequest, res: Response): void => {
+  const { id } = req.params;
+  const index = db.carBookings.findIndex(b => b.id === id || b.booking_number === id);
+  if (index === -1) {
+    res.status(404).json({ error: 'Booking not found.' });
+    return;
+  }
+  const removed = db.carBookings.splice(index, 1)[0];
+  res.json({ message: `Booking ${removed.booking_number} has been deleted.` });
+});
+
 // 6. ENQUIRIES & MESSAGES
 router.get('/enquiries', (req: AuthRequest, res: Response) => {
   res.json({
@@ -433,9 +444,53 @@ router.put('/enquiries/:type/:id/status', (req: AuthRequest, res: Response): voi
   res.json({ message: 'Status updated.' });
 });
 
+router.delete('/enquiries/:type/:id', (req: AuthRequest, res: Response): void => {
+  const { type, id } = req.params;
+
+  if (type === 'tour') {
+    const idx = db.tourEnquiries.findIndex(e => e.id === id);
+    if (idx !== -1) db.tourEnquiries.splice(idx, 1);
+  } else if (type === 'pilgrimage') {
+    const idx = db.pilgrimageEnquiries.findIndex(e => e.id === id);
+    if (idx !== -1) db.pilgrimageEnquiries.splice(idx, 1);
+  } else if (type === 'contact') {
+    const idx = db.contactMessages.findIndex(m => m.id === id);
+    if (idx !== -1) db.contactMessages.splice(idx, 1);
+  }
+
+  res.json({ message: 'Enquiry deleted successfully.' });
+});
+
 // 7. REVIEWS MODERATION
 router.get('/reviews', (req: AuthRequest, res: Response) => {
   res.json({ reviews: db.reviews });
+});
+
+router.post('/reviews', (req: AuthRequest, res: Response): void => {
+  try {
+    const { user_name, user_location, service_type, rating, title, comment, approved = true } = req.body;
+    if (!user_name || !comment) {
+      res.status(400).json({ error: 'Customer name and review text are required.' });
+      return;
+    }
+
+    const newReview: DbReview = {
+      id: `rev-${Date.now()}`,
+      user_name,
+      user_location: user_location || 'Customer',
+      service_type: service_type || 'Car Rental',
+      rating: Number(rating) || 5,
+      title: title || 'Verified Experience',
+      comment,
+      approved: Boolean(approved),
+      created_at: new Date().toISOString(),
+    };
+
+    db.reviews.unshift(newReview);
+    res.status(201).json({ message: 'Review added successfully.', review: newReview });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to add review.' });
+  }
 });
 
 router.put('/reviews/:id', (req: AuthRequest, res: Response): void => {

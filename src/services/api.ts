@@ -386,21 +386,43 @@ export const api = {
         method: 'POST',
         body: JSON.stringify(pkg),
       }),
+    createPilgrimagePackage: (pkg: Partial<PilgrimagePackage>) =>
+      request<{ message: string; package: PilgrimagePackage }>('/admin/pilgrimage-packages', {
+        method: 'POST',
+        body: JSON.stringify(pkg),
+      }),
     updatePilgrimage: (id: string, pkg: Partial<PilgrimagePackage>) =>
+      request<{ message: string; package: PilgrimagePackage }>(`/admin/pilgrimage-packages/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(pkg),
+      }),
+    updatePilgrimagePackage: (id: string, pkg: Partial<PilgrimagePackage>) =>
       request<{ message: string; package: PilgrimagePackage }>(`/admin/pilgrimage-packages/${id}`, {
         method: 'PUT',
         body: JSON.stringify(pkg),
       }),
     deletePilgrimage: (id: string) =>
       request<{ message: string }>(`/admin/pilgrimage-packages/${id}`, { method: 'DELETE' }),
+    deletePilgrimagePackage: (id: string) =>
+      request<{ message: string }>(`/admin/pilgrimage-packages/${id}`, { method: 'DELETE' }),
 
     // Bookings
     getBookings: () => request<{ bookings: CarBooking[] }>('/admin/bookings'),
-    updateBookingStatus: (id: string, statuses: { booking_status?: string; payment_status?: string }) =>
-      request<{ message: string; booking: CarBooking }>(`/admin/bookings/${id}/status`, {
+    updateBookingStatus: (
+      id: string,
+      statusesOrStatus: string | { booking_status?: string; payment_status?: string },
+      payment_status?: string
+    ) => {
+      const payload =
+        typeof statusesOrStatus === 'string'
+          ? { booking_status: statusesOrStatus, payment_status }
+          : statusesOrStatus;
+      return request<{ message: string; booking: CarBooking }>(`/admin/bookings/${id}/status`, {
         method: 'PUT',
-        body: JSON.stringify(statuses),
-      }),
+        body: JSON.stringify(payload),
+      });
+    },
+    deleteBooking: (id: string) => request<{ message: string }>(`/admin/bookings/${id}`, { method: 'DELETE' }),
 
     // Enquiries
     getEnquiries: () =>
@@ -409,14 +431,25 @@ export const api = {
         pilgrimageEnquiries: PilgrimageEnquiry[];
         contactMessages: ContactMessage[];
       }>('/admin/enquiries'),
-    updateEnquiryStatus: (type: 'tour' | 'pilgrimage' | 'contact', id: string, status: string) =>
-      request<{ message: string }>(`/admin/enquiries/${type}/${id}/status`, {
+    updateEnquiryStatus: (type: 'tour' | 'pilgrimage' | 'pilgrim' | 'contact', id: string, status: string) => {
+      const normalizedType = type === 'pilgrim' ? 'pilgrimage' : type;
+      return request<{ message: string }>(`/admin/enquiries/${normalizedType}/${id}/status`, {
         method: 'PUT',
         body: JSON.stringify({ status }),
-      }),
+      });
+    },
+    deleteEnquiry: (type: 'tour' | 'pilgrimage' | 'pilgrim' | 'contact', id: string) => {
+      const normalizedType = type === 'pilgrim' ? 'pilgrimage' : type;
+      return request<{ message: string }>(`/admin/enquiries/${normalizedType}/${id}`, { method: 'DELETE' });
+    },
 
     // Reviews
     getReviews: () => request<{ reviews: Review[] }>('/admin/reviews'),
+    createReview: (review: Partial<Review>) =>
+      request<{ message: string; review: Review }>('/admin/reviews', {
+        method: 'POST',
+        body: JSON.stringify(review),
+      }),
     updateReview: (id: string, approved: boolean) =>
       request<{ message: string; review: Review }>(`/admin/reviews/${id}`, {
         method: 'PUT',

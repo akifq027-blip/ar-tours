@@ -3,6 +3,7 @@ import path from 'path';
 import cors from 'cors';
 import { createServer as createViteServer } from 'vite';
 import { config } from './server/config.js';
+import { initMySQL, isMySqlConnected } from './server/mysql.js';
 
 // Route handlers
 import authRoutes from './server/routes/auth.js';
@@ -16,6 +17,9 @@ import adminRoutes from './server/routes/admin.js';
 import settingsRoutes from './server/routes/settings.js';
 
 async function startServer() {
+  // Initialize MySQL database pool & schema if configured
+  await initMySQL();
+
   const app = express();
   const PORT = 3000;
 
@@ -38,6 +42,8 @@ async function startServer() {
       status: 'healthy',
       app: 'AR Tours & Travel Backend API',
       timestamp: new Date().toISOString(),
+      mysql_configured: Boolean(config.mysql.host),
+      mysql_connected: isMySqlConnected,
       razorpay_configured: Boolean(config.razorpay.keyId),
       supabase_configured: Boolean(config.supabase.url),
     });
