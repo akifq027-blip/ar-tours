@@ -584,7 +584,7 @@ export const CarCheckout: React.FC = () => {
             specialInstructions: `License: ${drivingLicense} | ${specialInstructions}`,
           }}
           upiConfig={{
-            upi_id: settings?.upi_id || '8121434741@upi',
+            upi_id: settings?.upi_id || 'mosinquadri1911@ybl',
             payee_name: settings?.payee_name || 'AR Tours & Travel',
             upi_qr_image: settings?.upi_qr_image || '',
           }}

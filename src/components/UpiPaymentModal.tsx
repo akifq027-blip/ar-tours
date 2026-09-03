@@ -61,7 +61,7 @@ export const UpiPaymentModal: React.FC<UpiPaymentModalProps> = ({
 
   if (!isOpen) return null;
 
-  const upiId = upiConfig.upi_id || '8121434741@upi';
+  const upiId = upiConfig.upi_id || 'mosinquadri1911@ybl';
   const payeeName = upiConfig.payee_name || 'AR Tours & Travel';
   const transactionNote = `Slot Booking ${car.name.slice(0, 15)}`;
 

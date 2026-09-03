@@ -8,7 +8,7 @@ const router = Router();
 router.get('/upi-config', (req: Request, res: Response): void => {
   const info = db.settings.company_info || {};
   res.json({
-    upi_id: info.upi_id || '8121434741@upi',
+    upi_id: info.upi_id || 'mosinquadri1911@ybl',
     payee_name: info.payee_name || 'AR Tours & Travel',
     booking_slot_fee: info.booking_slot_fee || 499,
     upi_qr_image: info.upi_qr_image || '',

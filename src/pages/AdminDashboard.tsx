@@ -72,7 +72,7 @@ export const AdminDashboard: React.FC = () => {
     address: settings?.address || 'AR House, Suite 402, Airline Road, Near International Airport, Mumbai, MH 400099',
     booking_slot_fee: settings?.booking_slot_fee ?? 499,
     standard_security_deposit: settings?.standard_security_deposit ?? 3000,
-    upi_id: settings?.upi_id || '8121434741@upi',
+    upi_id: settings?.upi_id || 'mosinquadri1911@ybl',
     payee_name: settings?.payee_name || 'AR Tours & Travel',
     upi_qr_image: settings?.upi_qr_image || '',
   });
@@ -88,7 +88,7 @@ export const AdminDashboard: React.FC = () => {
         address: settings.address || 'AR House, Suite 402, Airline Road, Near International Airport, Mumbai, MH 400099',
         booking_slot_fee: settings.booking_slot_fee ?? 499,
         standard_security_deposit: settings.standard_security_deposit ?? 3000,
-        upi_id: settings.upi_id || '8121434741@upi',
+        upi_id: settings.upi_id || 'mosinquadri1911@ybl',
         payee_name: settings.payee_name || 'AR Tours & Travel',
         upi_qr_image: settings.upi_qr_image || '',
       });
@@ -618,7 +618,7 @@ export const AdminDashboard: React.FC = () => {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. 8121434741@upi or business@okaxis"
+                    placeholder="e.g. mosinquadri1911@ybl"
                     value={settingsForm.upi_id || ''}
                     onChange={e => setSettingsForm({ ...settingsForm, upi_id: e.target.value })}
                     className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-950/80 border border-white/15 rounded-xl text-white font-mono focus:ring-2 focus:ring-amber-400 focus:outline-none"

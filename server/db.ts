@@ -800,7 +800,7 @@ class DatabaseStore {
       currency: 'INR',
       currency_symbol: '₹',
       standard_security_deposit: 3000,
-      upi_id: '8121434741@upi',
+      upi_id: 'mosinquadri1911@ybl',
       payee_name: 'AR Tours & Travel',
       upi_qr_image: '',
       tax_rate_percent: 5,
