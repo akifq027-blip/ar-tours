@@ -50,7 +50,7 @@ export const About: React.FC = () => {
             </div>
             <h3 className="font-bold text-white text-base mb-1">Seamless Technology</h3>
             <p className="text-xs text-slate-400">
-              Modern digital booking with Razorpay-backed ₹99 slot reservations, digital vouchers, and instant WhatsApp support.
+              Modern digital booking with direct UPI slot reservations, digital vouchers, and instant WhatsApp support.
             </p>
           </div>
         </div>

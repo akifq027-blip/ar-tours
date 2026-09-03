@@ -53,8 +53,14 @@ export interface CarBooking {
   booking_fee: number;
   security_deposit: number;
   remaining_amount: number;
-  payment_status: 'pending' | 'paid' | 'failed' | 'refunded';
-  booking_status: 'pending' | 'confirmed' | 'active' | 'completed' | 'cancelled';
+  payment_method?: string; // 'UPI'
+  utr_number?: string;
+  payment_screenshot?: string;
+  payment_status: 'awaiting_approval' | 'pending' | 'paid' | 'failed' | 'rejected' | 'refunded';
+  booking_status: 'pending_verification' | 'pending' | 'confirmed' | 'active' | 'completed' | 'cancelled' | 'rejected';
+  rejection_reason?: string;
+  verified_at?: string;
+  verified_by?: string;
   razorpay_order_id?: string;
   razorpay_payment_id?: string;
   driver_required?: boolean;
@@ -186,6 +192,9 @@ export interface CompanySettings {
   currency: string;
   currency_symbol: string;
   standard_security_deposit: number;
+  upi_id?: string;
+  payee_name?: string;
+  upi_qr_image?: string;
   tax_rate_percent?: number;
   free_cancellation_hours?: number;
 }

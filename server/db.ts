@@ -70,8 +70,14 @@ export interface DbCarBooking {
   booking_fee: number;
   security_deposit: number;
   remaining_amount: number;
-  payment_status: 'pending' | 'paid' | 'failed' | 'refunded';
-  booking_status: 'pending' | 'confirmed' | 'active' | 'completed' | 'cancelled';
+  payment_method?: string; // 'UPI'
+  utr_number?: string;
+  payment_screenshot?: string;
+  payment_status: 'awaiting_approval' | 'pending' | 'paid' | 'failed' | 'rejected' | 'refunded';
+  booking_status: 'pending_verification' | 'pending' | 'confirmed' | 'active' | 'completed' | 'cancelled' | 'rejected';
+  rejection_reason?: string;
+  verified_at?: string;
+  verified_by?: string;
   razorpay_order_id?: string;
   razorpay_payment_id?: string;
   driver_required?: boolean;
@@ -412,15 +418,45 @@ class DatabaseStore {
       rental_days: 4,
       rental_rate_per_day: 3499,
       total_amount: 13996,
-      booking_fee: 99,
+      booking_fee: 499,
       security_deposit: 4000,
-      remaining_amount: 13897,
+      remaining_amount: 13497,
+      payment_method: 'UPI',
+      utr_number: '425983719024',
       payment_status: 'paid',
       booking_status: 'confirmed',
-      razorpay_order_id: 'order_seed_948271',
-      razorpay_payment_id: 'pay_seed_847291',
+      verified_at: new Date(Date.now() - 86400000 * 2).toISOString(),
+      verified_by: 'Admin',
       created_at: new Date(Date.now() - 86400000 * 2).toISOString(),
       updated_at: new Date(Date.now() - 86400000 * 2).toISOString(),
+    },
+    {
+      id: 'cb-seed-2',
+      booking_number: 'ART-CAR-918234',
+      user_id: null,
+      customer_name: 'Rahul Sharma',
+      customer_email: 'rahul.sharma@example.com',
+      customer_phone: '+91 98111 22334',
+      car_id: 'car-fortuner-02',
+      pickup_location: 'Mumbai Airport (T2)',
+      drop_location: 'Pune Station',
+      pickup_date: '2026-09-12',
+      pickup_time: '09:00',
+      return_date: '2026-09-15',
+      return_time: '20:00',
+      rental_days: 3,
+      rental_rate_per_day: 6499,
+      total_amount: 19497,
+      booking_fee: 499,
+      security_deposit: 5000,
+      remaining_amount: 18998,
+      payment_method: 'UPI',
+      utr_number: '529401826491',
+      payment_screenshot: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80',
+      payment_status: 'awaiting_approval',
+      booking_status: 'pending_verification',
+      created_at: new Date(Date.now() - 3600000 * 2).toISOString(),
+      updated_at: new Date(Date.now() - 3600000 * 2).toISOString(),
     },
   ];
 
@@ -760,10 +796,13 @@ class DatabaseStore {
       support_email: 'support@artours.com',
       address: 'AR House, Suite 402, Airline Road, Near International Airport, Mumbai, MH 400099',
       business_hours: 'Monday – Sunday: 8:00 AM – 10:00 PM (24/7 Roadside Assistance)',
-      booking_slot_fee: 99,
+      booking_slot_fee: 499,
       currency: 'INR',
       currency_symbol: '₹',
       standard_security_deposit: 3000,
+      upi_id: '8121434741@upi',
+      payee_name: 'AR Tours & Travel',
+      upi_qr_image: '',
       tax_rate_percent: 5,
       free_cancellation_hours: 24
     }
@@ -793,8 +832,8 @@ class DatabaseStore {
     const overlappingBookings = this.carBookings.filter(b => {
       if (b.car_id !== carId) return false;
       if (excludeBookingId && b.id === excludeBookingId) return false;
-      if (b.booking_status === 'cancelled') return false;
-      if (b.payment_status !== 'paid' && b.booking_status !== 'confirmed') return false;
+      if (b.booking_status === 'cancelled' || b.booking_status === 'rejected') return false;
+      if (b.payment_status !== 'paid' && b.booking_status !== 'confirmed' && b.booking_status !== 'pending_verification') return false;
 
       const existingStart = new Date(b.pickup_date).getTime();
       const existingEnd = new Date(b.return_date).getTime();

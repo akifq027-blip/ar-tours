@@ -17,6 +17,7 @@ import {
   Phone,
   Mail,
   SlidersHorizontal,
+  QrCode,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useSettings } from '../context/SettingsContext';
@@ -69,8 +70,11 @@ export const AdminDashboard: React.FC = () => {
     whatsapp: settings?.whatsapp || '+918121434741',
     email: settings?.email || 'contact@artours.com',
     address: settings?.address || 'AR House, Suite 402, Airline Road, Near International Airport, Mumbai, MH 400099',
-    booking_slot_fee: settings?.booking_slot_fee ?? 99,
+    booking_slot_fee: settings?.booking_slot_fee ?? 499,
     standard_security_deposit: settings?.standard_security_deposit ?? 3000,
+    upi_id: settings?.upi_id || '8121434741@upi',
+    payee_name: settings?.payee_name || 'AR Tours & Travel',
+    upi_qr_image: settings?.upi_qr_image || '',
   });
 
   // Sync settings when settings context loads
@@ -82,8 +86,11 @@ export const AdminDashboard: React.FC = () => {
         whatsapp: settings.whatsapp || '+918121434741',
         email: settings.email || 'contact@artours.com',
         address: settings.address || 'AR House, Suite 402, Airline Road, Near International Airport, Mumbai, MH 400099',
-        booking_slot_fee: settings.booking_slot_fee ?? 99,
+        booking_slot_fee: settings.booking_slot_fee ?? 499,
         standard_security_deposit: settings.standard_security_deposit ?? 3000,
+        upi_id: settings.upi_id || '8121434741@upi',
+        payee_name: settings.payee_name || 'AR Tours & Travel',
+        upi_qr_image: settings.upi_qr_image || '',
       });
     }
   }, [settings]);
@@ -380,8 +387,8 @@ export const AdminDashboard: React.FC = () => {
           <div className="bg-white/[0.03] backdrop-blur-xl p-6 rounded-3xl border border-white/10 shadow-2xl space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-bold text-white text-base">Recent ₹99 Car Slot Reservations</h3>
-                <p className="text-xs text-slate-400">Latest reservations confirmed via Razorpay slot lock.</p>
+                <h3 className="font-bold text-white text-base">Recent Car Slot Reservations</h3>
+                <p className="text-xs text-slate-400">Direct UPI bookings awaiting or verified with UTR transaction IDs.</p>
               </div>
               <button
                 onClick={() => setActiveTab('bookings')}
@@ -566,25 +573,145 @@ export const AdminDashboard: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-white/10">
-              <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">Car Pre-Booking Slot Fee (₹)</label>
-                <input
-                  type="number"
-                  value={settingsForm.booking_slot_fee ?? 99}
-                  onChange={e => setSettingsForm({ ...settingsForm, booking_slot_fee: Number(e.target.value) })}
-                  className="w-full px-3.5 py-2.5 text-xs bg-white/5 border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-amber-400 focus:outline-none backdrop-blur-md font-bold text-amber-400"
-                />
+            {/* DIRECT UPI & SLOT PRICING SECTION */}
+            <div className="p-4 sm:p-5 bg-amber-500/10 border border-amber-500/30 rounded-2xl space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-bold text-amber-300 flex items-center gap-2">
+                    <QrCode className="w-4 h-4" />
+                    <span>Direct UPI &amp; Slot Lock Configuration</span>
+                  </h3>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Configure your business UPI VPA, QR code, and custom slot lock token amount (minimum ₹1).
+                  </p>
+                </div>
               </div>
 
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-200 mb-1.5">
+                    Car Pre-Booking Slot Fee (₹) <span className="text-amber-400">* (Min ₹1)</span>
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    step="1"
+                    required
+                    value={settingsForm.booking_slot_fee ?? 499}
+                    onChange={e =>
+                      setSettingsForm({
+                        ...settingsForm,
+                        booking_slot_fee: Math.max(1, Number(e.target.value) || 1),
+                      })
+                    }
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-950/80 border border-amber-500/40 rounded-xl text-amber-300 font-mono font-bold focus:ring-2 focus:ring-amber-400 focus:outline-none"
+                  />
+                  <p className="text-[10px] text-slate-400 mt-1">
+                    Customers pay this exact token fee to hold their car slot. You can set it to ₹1 for live testing.
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-200 mb-1.5">
+                    Business UPI ID / VPA <span className="text-amber-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. 8121434741@upi or business@okaxis"
+                    value={settingsForm.upi_id || ''}
+                    onChange={e => setSettingsForm({ ...settingsForm, upi_id: e.target.value })}
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-950/80 border border-white/15 rounded-xl text-white font-mono focus:ring-2 focus:ring-amber-400 focus:outline-none"
+                  />
+                  <p className="text-[10px] text-slate-400 mt-1">
+                    Used for automatic QR generation and 1-click mobile deep-links.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-200 mb-1.5">
+                    Payee / Account Name <span className="text-amber-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. AR Tours & Travel"
+                    value={settingsForm.payee_name || ''}
+                    onChange={e => setSettingsForm({ ...settingsForm, payee_name: e.target.value })}
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-950/80 border border-white/15 rounded-xl text-white focus:ring-2 focus:ring-amber-400 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-200 mb-1.5">
+                    Default Security Deposit (₹)
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={settingsForm.standard_security_deposit ?? 3000}
+                    onChange={e =>
+                      setSettingsForm({
+                        ...settingsForm,
+                        standard_security_deposit: Math.max(0, Number(e.target.value) || 0),
+                      })
+                    }
+                    className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-slate-950/80 border border-white/15 rounded-xl text-white focus:ring-2 focus:ring-amber-400 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Custom QR Code Image (URL or File Upload) */}
               <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">Default Security Deposit (₹)</label>
-                <input
-                  type="number"
-                  value={settingsForm.standard_security_deposit ?? 3000}
-                  onChange={e => setSettingsForm({ ...settingsForm, standard_security_deposit: Number(e.target.value) })}
-                  className="w-full px-3.5 py-2.5 text-xs bg-white/5 border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-amber-400 focus:outline-none backdrop-blur-md"
-                />
+                <label className="block text-xs font-bold text-slate-200 mb-1.5">
+                  Custom UPI QR Code Image (Optional - Auto-generates if empty)
+                </label>
+                <div className="flex flex-col sm:flex-row items-center gap-3">
+                  <input
+                    type="text"
+                    placeholder="https://... or upload image"
+                    value={settingsForm.upi_qr_image || ''}
+                    onChange={e => setSettingsForm({ ...settingsForm, upi_qr_image: e.target.value })}
+                    className="w-full px-3.5 py-2.5 text-xs bg-slate-950/80 border border-white/15 rounded-xl text-white focus:ring-2 focus:ring-amber-400 focus:outline-none"
+                  />
+                  <label className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-bold whitespace-nowrap cursor-pointer transition">
+                    Upload QR Image
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={e => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = () => {
+                            setSettingsForm({ ...settingsForm, upi_qr_image: reader.result as string });
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+
+                {settingsForm.upi_qr_image && (
+                  <div className="mt-2 flex items-center gap-3">
+                    <img
+                      src={settingsForm.upi_qr_image}
+                      alt="Custom QR Preview"
+                      className="w-16 h-16 object-contain rounded-lg border border-white/20 bg-white p-1"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setSettingsForm({ ...settingsForm, upi_qr_image: '' })}
+                      className="text-xs text-rose-400 hover:underline"
+                    >
+                      Clear custom QR image
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 

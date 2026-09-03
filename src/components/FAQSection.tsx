@@ -6,8 +6,8 @@ export const FAQSection: React.FC = () => {
 
   const faqs = [
     {
-      q: 'How does the ₹99 car rental slot booking work?',
-      a: 'When booking a car online, you pay a nominal reservation token fee of ₹99 through our secure Razorpay gateway. This reserves your vehicle slot for the chosen dates. The remaining daily rental amount along with the refundable security deposit is payable upon vehicle pickup/handover.',
+      q: 'How does the car rental slot booking & UPI payment work?',
+      a: 'When booking a car online, you pay a nominal reservation token fee (default ₹499, customizable by admin) directly via Google Pay, PhonePe, Paytm, or any UPI app. Once you enter your 12-digit UPI UTR / Transaction ID and submit, your slot is instantly held and verified by our admin team with an instant WhatsApp confirmation.',
     },
     {
       q: 'What documents are required to rent a self-drive car?',

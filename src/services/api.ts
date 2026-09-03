@@ -171,7 +171,43 @@ export const api = {
   getUserCarBookings: (email?: string) =>
     request<{ bookings: CarBooking[] }>(`/cars/user/bookings${email ? `?email=${encodeURIComponent(email)}` : ''}`),
 
-  // Payments / Razorpay
+  // Payments / Direct UPI with UTR Verification
+  getUpiConfig: () =>
+    request<{
+      upi_id: string;
+      payee_name: string;
+      booking_slot_fee: number;
+      upi_qr_image?: string;
+      phone: string;
+      whatsapp: string;
+    }>('/payments/upi-config'),
+
+  submitUpiBooking: (body: {
+    carId: string;
+    customerName: string;
+    customerEmail: string;
+    customerPhone: string;
+    pickupLocation: string;
+    dropLocation: string;
+    pickupDate: string;
+    pickupTime?: string;
+    returnDate: string;
+    returnTime?: string;
+    driverRequired?: boolean;
+    specialInstructions?: string;
+    utrNumber: string;
+    paymentScreenshot?: string;
+  }) =>
+    request<{
+      success: boolean;
+      message: string;
+      booking: CarBooking;
+      payment?: any;
+    }>('/payments/submit-upi-booking', {
+      method: 'POST',
+      body: JSON.stringify(body),
+    }),
+
   createCarOrder: (body: {
     carId: string;
     customerName: string;
@@ -408,6 +444,11 @@ export const api = {
 
     // Bookings
     getBookings: () => request<{ bookings: CarBooking[] }>('/admin/bookings'),
+    verifyUtr: (id: string, body: { action: 'approve' | 'reject'; reason?: string }) =>
+      request<{ message: string; booking: CarBooking; success: boolean }>(`/admin/bookings/${id}/verify-utr`, {
+        method: 'POST',
+        body: JSON.stringify(body),
+      }),
     updateBookingStatus: (
       id: string,
       statusesOrStatus: string | { booking_status?: string; payment_status?: string },

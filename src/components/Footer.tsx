@@ -270,7 +270,7 @@ export const Footer: React.FC = () => {
             <Link to="/privacy-policy" className="hover:text-slate-200 transition">Privacy</Link>
             <Link to="/terms-and-conditions" className="hover:text-slate-200 transition">Terms</Link>
             <Link to="/refund-policy" className="hover:text-slate-200 transition">Refunds</Link>
-            <span className="text-amber-400 font-medium bg-amber-400/10 px-2.5 py-0.5 rounded-full border border-amber-400/20">Razorpay 256-bit Encrypted</span>
+            <span className="text-amber-400 font-medium bg-amber-400/10 px-2.5 py-0.5 rounded-full border border-amber-400/20">Direct UPI Verified</span>
           </div>
         </div>
       </div>

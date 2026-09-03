@@ -406,6 +406,70 @@ router.put('/bookings/:id/status', (req: AuthRequest, res: Response): void => {
   res.json({ message: 'Booking status updated.', booking });
 });
 
+// MANUAL UTR VERIFICATION (APPROVE / REJECT)
+router.post('/bookings/:id/verify-utr', (req: AuthRequest, res: Response): void => {
+  const { id } = req.params;
+  const { action, reason } = req.body;
+
+  if (!action || !['approve', 'reject'].includes(action)) {
+    res.status(400).json({ error: 'Valid action ("approve" or "reject") is required.' });
+    return;
+  }
+
+  const booking = db.carBookings.find(b => b.id === id || b.booking_number === id);
+  if (!booking) {
+    res.status(404).json({ error: 'Booking not found.' });
+    return;
+  }
+
+  const adminName = req.user?.full_name || 'Admin';
+
+  if (action === 'approve') {
+    booking.booking_status = 'confirmed';
+    booking.payment_status = 'paid';
+    booking.verified_at = new Date().toISOString();
+    booking.verified_by = adminName;
+    booking.updated_at = new Date().toISOString();
+
+    // Decrement car available slots
+    const car = db.cars.find(c => c.id === booking.car_id);
+    if (car) {
+      if (typeof car.available_slots === 'number' && car.available_slots > 0) {
+        car.available_slots -= 1;
+        if (car.available_slots === 0 && car.status === 'available') {
+          car.status = 'booked';
+        }
+      }
+    }
+
+    res.json({
+      success: true,
+      message: `UTR for booking #${booking.booking_number} approved! Reservation confirmed and slot reserved.`,
+      booking: {
+        ...booking,
+        car: db.cars.find(c => c.id === booking.car_id),
+      },
+    });
+  } else {
+    // Action is reject
+    booking.booking_status = 'rejected';
+    booking.payment_status = 'rejected';
+    booking.rejection_reason = reason || 'Invalid UTR reference or payment could not be reconciled.';
+    booking.verified_at = new Date().toISOString();
+    booking.verified_by = adminName;
+    booking.updated_at = new Date().toISOString();
+
+    res.json({
+      success: true,
+      message: `Booking #${booking.booking_number} payment rejected. Reason recorded.`,
+      booking: {
+        ...booking,
+        car: db.cars.find(c => c.id === booking.car_id),
+      },
+    });
+  }
+});
+
 router.delete('/bookings/:id', (req: AuthRequest, res: Response): void => {
   const { id } = req.params;
   const index = db.carBookings.findIndex(b => b.id === id || b.booking_number === id);
@@ -520,7 +584,40 @@ router.get('/settings', (req: AuthRequest, res: Response) => {
 });
 
 router.put('/settings', (req: AuthRequest, res: Response) => {
-  db.settings = { ...db.settings, ...req.body };
+  const updates = req.body || {};
+
+  // If updates contain top-level company fields directly, merge them into company_info
+  const companyFields = [
+    'company_name', 'tagline', 'phone', 'alt_phone', 'whatsapp', 'email',
+    'support_email', 'address', 'business_hours', 'booking_slot_fee',
+    'currency', 'currency_symbol', 'standard_security_deposit', 'tax_rate_percent',
+    'free_cancellation_hours', 'upi_id', 'payee_name', 'upi_qr_image'
+  ];
+
+  const currentInfo = db.settings.company_info || {};
+  const newInfo = { ...currentInfo };
+
+  if (updates.company_info && typeof updates.company_info === 'object') {
+    Object.assign(newInfo, updates.company_info);
+  }
+
+  companyFields.forEach(field => {
+    if (updates[field] !== undefined) {
+      newInfo[field] = updates[field];
+    }
+  });
+
+  // Ensure minimum 1 rupee for booking_slot_fee
+  if (newInfo.booking_slot_fee !== undefined) {
+    newInfo.booking_slot_fee = Math.max(1, Number(newInfo.booking_slot_fee) || 1);
+  }
+
+  db.settings = {
+    ...db.settings,
+    ...updates,
+    company_info: newInfo,
+  };
+
   res.json({ message: 'Settings saved successfully.', settings: db.settings });
 });
 

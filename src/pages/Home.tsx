@@ -122,10 +122,10 @@ export const Home: React.FC = () => {
                   Self-Drive &amp; Chauffeur
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
-                  Car Rentals with ₹99 Pre-Booking
+                  Car Rentals with Direct UPI Slot Pre-Booking
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                  Lock in sanitized SUVs, MUVs (Innova Crysta, Ertiga), and luxury sedans with an instant ₹99 token fee verified by Razorpay.
+                  Lock in sanitized SUVs, MUVs (Innova Crysta, Ertiga), and luxury sedans with a quick UPI slot reservation verified directly by admin.
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">

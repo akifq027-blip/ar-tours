@@ -13,9 +13,9 @@ export const HowItWorks: React.FC = () => {
     {
       num: '02',
       icon: CreditCard,
-      title: 'Pay ₹99 to Secure Slot',
+      title: 'Pay Slot Fee via UPI',
       description:
-        'For car rentals, lock in your vehicle reservation instantly with an online ₹99 token fee verified via 256-bit Razorpay.',
+        'For car rentals, lock in your vehicle reservation instantly with a direct UPI token payment (GPay, PhonePe, Paytm) and instant UTR verification.',
     },
     {
       num: '03',

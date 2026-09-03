@@ -254,19 +254,45 @@ export const Dashboard: React.FC = () => {
                         </h3>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
-                          b.booking_status === 'confirmed'
-                            ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'
-                            : 'bg-amber-500/10 border border-amber-500/20 text-amber-400'
-                        }`}>
-                          {b.booking_status.toUpperCase()}
-                        </span>
+                      <div className="flex flex-wrap items-center gap-2">
+                        {b.booking_status === 'pending_verification' || b.payment_status === 'awaiting_approval' ? (
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300">
+                            <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                            <span>Awaiting Admin UTR Confirmation (Slot Held)</span>
+                          </span>
+                        ) : b.booking_status === 'confirmed' ? (
+                          <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
+                            ✓ CONFIRMED &amp; RESERVED
+                          </span>
+                        ) : b.booking_status === 'rejected' ? (
+                          <span className="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/10 border border-rose-500/30 text-rose-400">
+                            ✕ PAYMENT REJECTED
+                          </span>
+                        ) : (
+                          <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-800 border border-white/10 text-slate-300">
+                            {b.booking_status.toUpperCase()}
+                          </span>
+                        )}
 
-                        <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                          ₹{b.booking_fee} Slot Fee PAID
+                        <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 border border-amber-500/20 text-amber-300 font-mono">
+                          ₹{b.booking_fee || 499} Slot Fee Paid (UPI)
                         </span>
                       </div>
+                    </div>
+
+                    {/* UTR and Details */}
+                    <div className="bg-slate-950/60 rounded-xl p-3 border border-white/5 flex flex-wrap items-center justify-between gap-2 text-xs">
+                      <div className="flex items-center gap-2">
+                        <span className="text-slate-400">Submitted UTR / Txn ID:</span>
+                        <span className="font-mono font-bold text-amber-300 bg-slate-900 px-2 py-0.5 rounded border border-white/10">
+                          {b.utr_number || 'Under verification'}
+                        </span>
+                      </div>
+                      {b.rejection_reason && (
+                        <div className="text-rose-400 text-xs">
+                          Note: {b.rejection_reason}
+                        </div>
+                      )}
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
