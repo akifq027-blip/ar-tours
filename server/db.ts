@@ -258,7 +258,7 @@ class DatabaseStore {
       fuel_type: 'Diesel',
       price_per_day: 3499,
       security_deposit: 4000,
-      booking_amount: 99,
+      booking_amount: 499,
       description: 'The gold standard for comfortable long-distance travel and family journeys. High ground clearance, plush captain seats, multi-zone climate control, and supreme reliability.',
       features: ['7 Captain Seats', 'Dual AC & Rear Vents', 'Cruise Control', 'Apple CarPlay & Android Auto', '7 Airbags', 'Ample Luggage Boot', '24/7 Roadside Support'],
       images: [
@@ -284,7 +284,7 @@ class DatabaseStore {
       fuel_type: 'Diesel',
       price_per_day: 3899,
       security_deposit: 5000,
-      booking_amount: 99,
+      booking_amount: 499,
       description: 'Next-gen luxury SUV equipped with ADAS Level 2 safety, panoramic Skyroof, Sony 12-speaker audio system, and commanding highway presence.',
       features: ['7 Seats AWD', 'Panoramic Skyroof', 'Wireless Phone Charger', 'Sony 3D Surround Audio', 'Ventilated Front Seats', '360-Degree Camera', 'ADAS Safety'],
       images: [
@@ -310,7 +310,7 @@ class DatabaseStore {
       fuel_type: 'Petrol',
       price_per_day: 2499,
       security_deposit: 3000,
-      booking_amount: 99,
+      booking_amount: 499,
       description: 'Spacious 5-seater compact SUV perfect for city travel and scenic highway getaways. Great fuel economy, connected tech, and smooth suspension.',
       features: ['5 Seater', 'Panoramic Sunroof', 'Ventilated Seats', 'Bose Premium Audio', 'Air Purifier', 'Connected Car Tech'],
       images: [
@@ -335,7 +335,7 @@ class DatabaseStore {
       fuel_type: 'Petrol',
       price_per_day: 2199,
       security_deposit: 2500,
-      booking_amount: 99,
+      booking_amount: 499,
       description: 'Executive comfort with ultra-smooth CVT transmission, class-leading rear legroom, soft leather upholstery, and superior refinement for business or leisure.',
       features: ['5 Seater Executive Sedan', 'Leatherette Upholstery', 'Electric Sunroof', 'LaneWatch Camera', 'Huge 506L Trunk', 'Keyless Entry'],
       images: [
@@ -360,7 +360,7 @@ class DatabaseStore {
       fuel_type: 'Diesel',
       price_per_day: 5999,
       security_deposit: 8000,
-      booking_amount: 99,
+      booking_amount: 499,
       description: 'Dominant 4x4 road presence with heavy-duty performance for mountain trips, outstation journeys, and VIP travel. Top-tier luxury and bulletproof reliability.',
       features: ['7 Seater 4x4', 'Black & Maroon Leather', 'Kick-Sensor Tailgate', 'JBL 11-Speaker Audio', 'Hill Assist Control', 'High Ground Clearance'],
       images: [
@@ -385,7 +385,7 @@ class DatabaseStore {
       fuel_type: 'CNG',
       price_per_day: 1899,
       security_deposit: 2000,
-      booking_amount: 99,
+      booking_amount: 499,
       description: 'Most economical 7-seater MUV with dual CNG/Petrol power. Ideal for budget family road trips and city transport.',
       features: ['7 Seater', 'CNG Eco-Friendly', 'Roof-Mounted AC', 'Touchscreen Infotainment', 'Dual Airbags', 'Foldable Rear Seats'],
       images: [
@@ -756,8 +756,8 @@ class DatabaseStore {
       user_location: 'Mumbai, India',
       service_type: 'Car Rental',
       rating: 5,
-      title: 'Transparent ₹99 Slot Booking & Pristine Innova Crysta',
-      comment: 'Booked an Innova Crysta for a 5-day outstation family trip to Mahabaleshwar. The ₹99 slot booking on the website was instantaneous and gave me peace of mind. Car was spotlessly clean, fully sanitized, and the security deposit was refunded back into my account within 4 hours of return. Highly recommended!',
+      title: 'Transparent ₹499 Slot Booking & Pristine Innova Crysta',
+      comment: 'Booked an Innova Crysta for a 5-day outstation family trip to Mahabaleshwar. The ₹499 slot booking on the website was instantaneous and gave me peace of mind. Car was spotlessly clean, fully sanitized, and the security deposit was refunded back into my account within 4 hours of return. Highly recommended!',
       approved: true,
       created_at: new Date(Date.now() - 86400000 * 8).toISOString(),
     },
@@ -779,7 +779,7 @@ class DatabaseStore {
       service_type: 'Car Rental',
       rating: 5,
       title: 'Great Airport Pickup & Instant Booking Confirmation',
-      comment: 'Rented the XUV700 from the airport. Booking online took 2 minutes, the ₹99 fee is genuine, and there were no hidden charges. Vehicle performed brilliantly on the expressway.',
+      comment: 'Rented the XUV700 from the airport. Booking online took 2 minutes, the ₹499 fee is genuine, and there were no hidden charges. Vehicle performed brilliantly on the expressway.',
       approved: true,
       created_at: new Date(Date.now() - 86400000 * 15).toISOString(),
     }

@@ -12,9 +12,9 @@ export const WhyChooseUs: React.FC = () => {
   const points = [
     {
       icon: CreditCard,
-      title: '₹99 Slot Pre-Booking',
+      title: '₹499 Slot Pre-Booking',
       description:
-        'Reserve any vehicle in our verified fleet with just ₹99 online token fee. Pay the balance amount at vehicle handover.',
+        'Reserve any vehicle in our verified fleet with just ₹499 online token fee. Pay the balance amount at vehicle handover.',
       badge: 'Zero Risk',
     },
     {

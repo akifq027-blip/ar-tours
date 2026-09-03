@@ -72,7 +72,7 @@ export async function initMySQLDatabase(): Promise<boolean> {
         fuel_type VARCHAR(50) DEFAULT 'Diesel',
         price_per_day DECIMAL(10,2) NOT NULL,
         security_deposit DECIMAL(10,2) DEFAULT 3000,
-        booking_amount DECIMAL(10,2) DEFAULT 99,
+        booking_amount DECIMAL(10,2) DEFAULT 499,
         description TEXT,
         features JSON,
         images JSON,

@@ -108,7 +108,7 @@ router.post('/check-availability', (req: Request, res: Response): void => {
     }
 
     const rentalTotal = rentalDays * car.price_per_day;
-    const bookingSlotFee = car.booking_amount || 99;
+    const bookingSlotFee = car.booking_amount || 499;
     const securityDeposit = car.security_deposit || 3000;
     const remainingAmount = rentalTotal - bookingSlotFee;
 
@@ -130,7 +130,7 @@ router.post('/check-availability', (req: Request, res: Response): void => {
         rentalDays,
         ratePerDay: car.price_per_day,
         rentalTotal,
-        bookingSlotFee, // ₹99
+        bookingSlotFee, // ₹499
         securityDeposit, // Refundable
         remainingPayableAtPickup: Math.max(0, remainingAmount),
         currency: 'INR',

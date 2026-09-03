@@ -103,8 +103,8 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({
         {/* Header with Razorpay Security Badge */}
         <div className="bg-slate-950/80 text-white p-5 flex items-center justify-between border-b border-white/10 backdrop-blur-md">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-black flex items-center justify-center text-sm shadow">
-              ₹99
+            <div className="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-black flex items-center justify-center text-xs shadow">
+              ₹499
             </div>
             <div>
               <div className="text-xs text-amber-400 font-semibold uppercase tracking-wider flex items-center gap-1">

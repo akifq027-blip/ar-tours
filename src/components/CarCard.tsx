@@ -51,10 +51,10 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
           )}
         </div>
 
-        {/* ₹99 Badge */}
+        {/* ₹499 Badge */}
         <div className="absolute bottom-3 right-3 bg-amber-500 text-slate-950 font-extrabold text-xs px-3 py-1.5 rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Pay ₹99 to Reserve Slot</span>
+          <span>Pay ₹499 to Reserve Slot</span>
         </div>
       </div>
 

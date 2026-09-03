@@ -15,7 +15,7 @@ router.get('/', (req: Request, res: Response) => {
       support_email: 'support@artours.com',
       address: 'AR House, Suite 402, Airline Road, Near International Airport, Mumbai, MH 400099',
       business_hours: 'Monday – Sunday: 8:00 AM – 10:00 PM (24/7 Roadside Assistance)',
-      booking_slot_fee: 99,
+      booking_slot_fee: 499,
       currency: 'INR',
       currency_symbol: '₹',
       standard_security_deposit: 3000,

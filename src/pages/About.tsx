@@ -16,7 +16,7 @@ export const About: React.FC = () => {
             About AR Tours &amp; Travel
           </h1>
           <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
-            Delivering trusted travel services, verified vehicle rentals with instant ₹99 slot reservations, and spiritually blessed Hajj &amp; Umrah journeys for over a decade.
+            Delivering trusted travel services, verified vehicle rentals with instant ₹499 slot reservations, and spiritually blessed Hajj &amp; Umrah journeys for over a decade.
           </p>
         </div>
       </div>

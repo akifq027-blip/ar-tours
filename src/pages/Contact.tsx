@@ -197,7 +197,7 @@ export const Contact: React.FC = () => {
                         className="w-full px-3.5 py-2.5 text-xs bg-slate-900 border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-amber-400 focus:outline-none font-medium"
                       >
                         <option value="General Travel Enquiry">General Travel Enquiry</option>
-                        <option value="Car Rental Booking Help">Car Rental Booking Help (₹99 Pre-Booking)</option>
+                        <option value="Car Rental Booking Help">Car Rental Booking Help (₹499 Pre-Booking)</option>
                         <option value="Custom Tour Planning">Custom Tour Planning</option>
                         <option value="Hajj & Umrah Consultation">Hajj &amp; Umrah Consultation</option>
                         <option value="Airport Transfer Assistance">Airport Transfer Assistance</option>

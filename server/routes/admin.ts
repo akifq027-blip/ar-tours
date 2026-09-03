@@ -19,7 +19,7 @@ router.get('/dashboard', (req: AuthRequest, res: Response) => {
     const confirmedCarBookings = carBookings.filter(b => b.booking_status === 'confirmed' || b.payment_status === 'paid');
     const totalRevenue = carBookings
       .filter(b => b.payment_status === 'paid')
-      .reduce((sum, b) => sum + (b.booking_fee || 99), 0);
+      .reduce((sum, b) => sum + (b.booking_fee || 499), 0);
 
     const tourEnquiries = db.tourEnquiries;
     const pilgrimageEnquiries = db.pilgrimageEnquiries;
@@ -79,7 +79,7 @@ router.post('/cars', (req: AuthRequest, res: Response): void => {
       fuel_type,
       price_per_day,
       security_deposit = 3000,
-      booking_amount = 99,
+      booking_amount = 499,
       description = '',
       features = [],
       images = [],

@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
                 <CreditCard className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-white">₹99 Slot Pre-Booking</h4>
+                <h4 className="text-sm font-semibold text-white">₹499 Slot Pre-Booking</h4>
                 <p className="text-xs text-slate-400">Reserve your car vehicle slot with minimal token fee.</p>
               </div>
             </div>
@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
               </span>
             </Link>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-md">
-              Your premier full-stack travel partner for all-inclusive domestic &amp; international tour packages, transparent car rentals with instant ₹99 reservation, and sacred Hajj &amp; Umrah journeys.
+              Your premier full-stack travel partner for all-inclusive domestic &amp; international tour packages, transparent car rentals with instant ₹499 reservation, and sacred Hajj &amp; Umrah journeys.
             </p>
             <div className="pt-2 text-xs text-slate-400 space-y-2.5">
               <div className="flex items-start gap-2.5">

@@ -82,13 +82,13 @@ export const Home: React.FC = () => {
             </h1>
 
             <p className="mt-5 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Curated holiday tours, verified car rentals with <strong className="text-amber-400">₹99 slot reservation</strong>, and spiritually enriching 5-star Hajj &amp; Umrah journeys.
+              Curated holiday tours, verified car rentals with <strong className="text-amber-400">₹499 slot reservation</strong>, and spiritually enriching 5-star Hajj &amp; Umrah journeys.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-slate-300">
               <div className="flex items-center gap-1.5 bg-white/5 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 shadow-sm">
                 <CreditCard className="w-3.5 h-3.5 text-amber-400" />
-                <span>Reserve Car Slot for ₹99</span>
+                <span>Reserve Car Slot for ₹499</span>
               </div>
               <div className="flex items-center gap-1.5 bg-white/5 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 shadow-sm">
                 <Moon className="w-3.5 h-3.5 text-amber-400" />
@@ -199,7 +199,7 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. FEATURED CARS FLEET WITH ₹99 PRE-BOOKING */}
+      {/* 3. FEATURED CARS FLEET WITH ₹499 PRE-BOOKING */}
       <section className="py-16 sm:py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
@@ -211,7 +211,7 @@ export const Home: React.FC = () => {
                 Premium Car Rentals
               </h2>
               <p className="mt-2 text-sm text-slate-400 max-w-xl">
-                Choose from our sanitized fleet. Pay only <strong className="text-amber-400">₹99</strong> online today to lock in your booking slot; pay the rest at pickup.
+                Choose from our sanitized fleet. Pay only <strong className="text-amber-400">₹499</strong> online today to lock in your booking slot; pay the rest at pickup.
               </p>
             </div>
             <Link
@@ -343,7 +343,7 @@ export const Home: React.FC = () => {
               to="/cars"
               className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5"
             >
-              Reserve a Car Slot (₹99)
+              Reserve a Car Slot (₹499)
             </Link>
             <WhatsAppButton
               variant="button"

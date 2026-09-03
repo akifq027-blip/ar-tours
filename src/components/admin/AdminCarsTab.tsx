@@ -57,7 +57,7 @@ export const AdminCarsTab: React.FC<AdminCarsTabProps> = ({ cars, onRefresh, sho
     transmission: 'Automatic' as 'Manual' | 'Automatic',
     fuel_type: 'Diesel' as 'Petrol' | 'Diesel' | 'CNG' | 'Electric' | 'Hybrid',
     price_per_day: 3499,
-    booking_amount: 99,
+    booking_amount: 499,
     security_deposit: 3000,
     total_slots: 5,
     available_slots: 4,
@@ -90,7 +90,7 @@ export const AdminCarsTab: React.FC<AdminCarsTabProps> = ({ cars, onRefresh, sho
       transmission: 'Automatic',
       fuel_type: 'Diesel',
       price_per_day: 3499,
-      booking_amount: 99,
+      booking_amount: 499,
       security_deposit: 3000,
       total_slots: 5,
       available_slots: 5,
@@ -119,7 +119,7 @@ export const AdminCarsTab: React.FC<AdminCarsTabProps> = ({ cars, onRefresh, sho
       transmission: car.transmission as any,
       fuel_type: car.fuel_type as any,
       price_per_day: car.price_per_day,
-      booking_amount: car.booking_amount || 99,
+      booking_amount: car.booking_amount || 499,
       security_deposit: car.security_deposit || 3000,
       total_slots: car.total_slots || car.available_slots || 5,
       available_slots: car.available_slots ?? 4,
@@ -472,7 +472,7 @@ export const AdminCarsTab: React.FC<AdminCarsTabProps> = ({ cars, onRefresh, sho
                     </div>
                     <div className="text-right">
                       <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                        ₹{c.booking_amount || 99} Slot Lock
+                        ₹{c.booking_amount || 499} Slot Lock
                       </span>
                     </div>
                   </div>
@@ -753,7 +753,7 @@ export const AdminCarsTab: React.FC<AdminCarsTabProps> = ({ cars, onRefresh, sho
                   <input
                     type="number"
                     required
-                    value={carForm.booking_amount ?? 99}
+                    value={carForm.booking_amount ?? 499}
                     onChange={e => setCarForm({ ...carForm, booking_amount: Number(e.target.value) })}
                     className="w-full p-2.5 bg-white/5 border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-amber-400 focus:outline-none"
                   />

@@ -175,7 +175,7 @@ export const AdminDashboard: React.FC = () => {
 
   const totalLeads = tourEnquiries.length + pilgrimEnquiries.length + contactMessages.length;
   const totalSlotRevenue = bookings.reduce(
-    (sum, b) => sum + (b.payment_status === 'paid' ? (b.booking_fee || 99) : 0),
+    (sum, b) => sum + (b.payment_status === 'paid' ? (b.booking_fee || 499) : 0),
     0
   );
 

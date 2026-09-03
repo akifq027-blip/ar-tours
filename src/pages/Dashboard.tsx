@@ -219,7 +219,7 @@ export const Dashboard: React.FC = () => {
                 to="/cars"
                 className="px-4 py-2 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg shadow-amber-500/20 transition"
               >
-                + Book Another Car (₹99)
+                + Book Another Car (₹499)
               </Link>
             </div>
 
@@ -228,7 +228,7 @@ export const Dashboard: React.FC = () => {
                 <Car className="w-12 h-12 text-slate-500 mx-auto mb-3" />
                 <h3 className="text-base font-bold text-white">No Car Bookings Yet</h3>
                 <p className="text-xs text-slate-400 mt-1 mb-6">
-                  Reserve an SUV, MUV, or sedan for just ₹99 online.
+                  Reserve an SUV, MUV, or sedan for just ₹499 online.
                 </p>
                 <Link
                   to="/cars"

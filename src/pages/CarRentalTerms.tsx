@@ -21,10 +21,10 @@ export const CarRentalTerms: React.FC = () => {
           <section className="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/20">
             <h2 className="text-sm font-bold text-amber-300 mb-1 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-amber-400" />
-              <span>The ₹99 Slot Pre-Booking Policy</span>
+              <span>The ₹499 Slot Pre-Booking Policy</span>
             </h2>
             <p className="text-amber-200/90 text-xs">
-              The ₹99 online payment secures and reserves the vehicle slot for your requested dates. The remaining tariff balance plus the refundable security deposit (₹3,000) are paid upon vehicle handover.
+              The ₹499 online payment secures and reserves the vehicle slot for your requested dates. The remaining tariff balance plus the refundable security deposit (₹3,000) are paid upon vehicle handover.
             </p>
           </section>
 

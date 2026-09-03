@@ -21,11 +21,11 @@ export const RefundPolicy: React.FC = () => {
           <section className="bg-emerald-500/10 p-4 rounded-2xl border border-emerald-500/20">
             <h2 className="text-sm font-bold text-emerald-300 mb-1 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>Car Rental (₹99 Slot Fee) Refund Schedule</span>
+              <span>Car Rental (₹499 Slot Fee) Refund Schedule</span>
             </h2>
             <ul className="text-emerald-200 text-xs list-disc pl-5 space-y-1">
-              <li><strong>Cancellation &gt; 24 hours before pickup:</strong> 100% full refund of the ₹99 slot booking fee.</li>
-              <li><strong>Cancellation &lt; 24 hours before pickup:</strong> ₹99 is retained as fleet reservation &amp; blocking charge.</li>
+              <li><strong>Cancellation &gt; 24 hours before pickup:</strong> 100% full refund of the ₹499 slot booking fee.</li>
+              <li><strong>Cancellation &lt; 24 hours before pickup:</strong> ₹499 is retained as fleet reservation &amp; blocking charge.</li>
               <li><strong>Security Deposit:</strong> 100% refundable upon vehicle handover return with no damages.</li>
             </ul>
           </section>

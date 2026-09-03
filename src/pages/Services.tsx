@@ -18,7 +18,7 @@ export const Services: React.FC = () => {
     {
       icon: Car,
       title: 'Car Rentals (Self-Drive & Chauffeur)',
-      desc: 'Sanitized SUVs, MUVs, and sedans with easy ₹99 online slot reservations. Daily, weekly, and monthly corporate leasing options available.',
+      desc: 'Sanitized SUVs, MUVs, and sedans with easy ₹499 online slot reservations. Daily, weekly, and monthly corporate leasing options available.',
       link: '/cars',
       cta: 'View Fleet & Book',
     },

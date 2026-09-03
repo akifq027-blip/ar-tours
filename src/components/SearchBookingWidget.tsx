@@ -57,7 +57,7 @@ export const SearchBookingWidget: React.FC = () => {
           }`}
         >
           <Car className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
-          <span>Rent a Car (₹99 Slot)</span>
+          <span>Rent a Car (₹499 Slot)</span>
         </button>
 
         <button
@@ -150,7 +150,7 @@ export const SearchBookingWidget: React.FC = () => {
             <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10">
               <div className="text-xs text-slate-300 flex items-center gap-2">
                 <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Pay only <strong className="text-amber-400 font-bold">₹99</strong> online to confirm vehicle slot. Balance payable at pickup.</span>
+                <span>Pay only <strong className="text-amber-400 font-bold">₹499</strong> online to confirm vehicle slot. Balance payable at pickup.</span>
               </div>
               <button
                 type="submit"

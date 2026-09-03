@@ -63,7 +63,7 @@ export const Navbar: React.FC = () => {
 
           <div className="flex items-center gap-3">
             <div className="text-[11px] text-amber-400 font-semibold bg-amber-400/10 border border-amber-400/20 px-3 py-0.5 rounded-full">
-              ₹99 Slot Booking Available
+              ₹499 Slot Booking Available
             </div>
           </div>
         </div>
@@ -259,7 +259,7 @@ export const Navbar: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               <Car className="w-5 h-5 text-amber-400" />
-              <span>Car Rentals (₹99 Slot)</span>
+              <span>Car Rentals (₹499 Slot)</span>
             </NavLink>
             <NavLink
               to="/hajj-umrah"

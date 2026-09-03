@@ -20,7 +20,7 @@ export interface Car {
   fuel_type: 'Petrol' | 'Diesel' | 'CNG' | 'Electric' | 'Hybrid';
   price_per_day: number;
   security_deposit: number;
-  booking_amount: number; // ₹99
+  booking_amount: number; // ₹499
   description: string;
   features: string[];
   images: string[];

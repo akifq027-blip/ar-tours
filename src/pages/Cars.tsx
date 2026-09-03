@@ -76,13 +76,13 @@ export const Cars: React.FC = () => {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3 backdrop-blur-md">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>₹99 Slot Pre-Booking Available</span>
+              <span>₹499 Slot Pre-Booking Available</span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
               Verified Car Rental Fleet
             </h1>
             <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-              Explore our sanitized, fully insured vehicles for self-drive or chauffeur service in Mumbai, Pune, and surrounding corridors. Reserve your slot for just ₹99 online.
+              Explore our sanitized, fully insured vehicles for self-drive or chauffeur service in Mumbai, Pune, and surrounding corridors. Reserve your slot for just ₹499 online.
             </p>
           </div>
         </div>
@@ -230,7 +230,7 @@ export const Cars: React.FC = () => {
             <div className="flex items-center justify-between text-xs text-slate-400 px-1 font-medium">
               <span>Showing <strong className="text-white">{cars.length}</strong> available vehicle(s)</span>
               <span className="text-emerald-400 font-semibold flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5" /> Instant ₹99 slot booking enabled
+                <CheckCircle2 className="w-3.5 h-3.5" /> Instant ₹499 slot booking enabled
               </span>
             </div>
 
@@ -251,8 +251,8 @@ export const Cars: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs text-slate-300 leading-relaxed">
             <div className="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10">
-              <strong className="block text-white mb-1 font-semibold">1. ₹99 Slot Pre-Booking</strong>
-              The ₹99 online fee reserves your chosen car. Remaining rental amount is collected at pickup.
+              <strong className="block text-white mb-1 font-semibold">1. ₹499 Slot Pre-Booking</strong>
+              The ₹499 online fee reserves your chosen car. Remaining rental amount is collected at pickup.
             </div>
             <div className="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10">
               <strong className="block text-white mb-1 font-semibold">2. Refundable Security Deposit</strong>

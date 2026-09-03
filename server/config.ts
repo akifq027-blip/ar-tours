@@ -26,7 +26,7 @@ export const config = {
     keyId: process.env.RAZORPAY_KEY_ID || process.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_ARTours2026',
     keySecret: process.env.RAZORPAY_KEY_SECRET || 'secret_ar_tours_razorpay_mock',
   },
-  bookingSlotFee: 99, // INR
+  bookingSlotFee: 499, // INR
   standardSecurityDeposit: 3000, // INR
   company: {
     name: 'AR Tours & Travel',

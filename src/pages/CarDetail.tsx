@@ -180,7 +180,7 @@ export const CarDetail: React.FC = () => {
                 </div>
                 <div className="absolute bottom-3 right-3 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-extrabold text-xs px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4" />
-                  <span>₹99 Slot Pre-Booking</span>
+                  <span>₹499 Slot Pre-Booking</span>
                 </div>
               </div>
 
@@ -278,7 +278,7 @@ export const CarDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Live Booking & ₹99 Reservation Box */}
+          {/* Right Column: Live Booking & ₹499 Reservation Box */}
           <div className="space-y-6">
             <div className="bg-slate-900/60 backdrop-blur-2xl p-6 rounded-3xl border border-white/10 shadow-2xl sticky top-24">
               <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
@@ -287,7 +287,7 @@ export const CarDetail: React.FC = () => {
                   <h3 className="text-xl font-bold text-white">Check Dates &amp; Reserve</h3>
                 </div>
                 <div className="bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold px-2.5 py-1 rounded-full">
-                  ₹99 Slot Token
+                  ₹499 Slot Token
                 </div>
               </div>
 
@@ -379,7 +379,7 @@ export const CarDetail: React.FC = () => {
                   className="w-full py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-extrabold text-sm rounded-xl shadow-lg shadow-amber-500/20 transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   <ShieldCheck className="w-4 h-4" />
-                  <span>Reserve Vehicle Slot (Pay ₹99)</span>
+                  <span>Reserve Vehicle Slot (Pay ₹{availResult?.pricing?.bookingSlotFee || 499})</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
